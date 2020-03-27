@@ -1,0 +1,12 @@
+[Unit]
+Description=Torrent wrangling service
+After=network.target
+
+[Service]
+User=user
+Type=simple
+Restart=always
+ExecStart=/opt/torrent-watch/bin/torrent-watch
+
+[Install]
+WantedBy=multi-user.target
