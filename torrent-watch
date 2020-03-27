@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+inotifywait -m ~/Downloads -e close_write --format %w%f |
+    while read file; do
+        if [ "${file##*.}" == "torrent" ]; then
+            scp -q ${file} pi@torrent-pi.local:/srv/torrents/watch 
+            rm ${file}
+        fi
+    done
